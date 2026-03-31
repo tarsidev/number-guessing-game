@@ -11,10 +11,12 @@ public static class GameEngine
         int randomNum = GenerateNumber();
         bool isCorrect = false;
 
-        int userGuess = Utils.InputValidator.ReadInt("Inform your guess: ");
-
+        // Console.Write(randomNum);
+    
         while (!isCorrect)
         {
+            int userGuess = Utils.InputValidator.ReadInt("Inform your guess: ");
+
             if (userGuess == randomNum)
             {
                 Console.WriteLine("Correct! You guessed the number.");
@@ -22,13 +24,11 @@ public static class GameEngine
             }
             else if (userGuess < randomNum)
             {
-                Console.WriteLine("Too low!");
-                break;
+                Console.WriteLine("Too low! Try again.");
             } 
             else
             {
-                Console.WriteLine("Too high!");
-                break;
+                Console.WriteLine("Too high! Try again.");
             }    
         }
     }
