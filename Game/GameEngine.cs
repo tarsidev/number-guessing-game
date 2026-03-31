@@ -1,24 +1,35 @@
 public static class GameEngine
 {
+    private static Random rnd = new Random();
+    public static void ShowHeader()
+    {
+        Console.Clear();
+        Console.Title = "Number Guessing Game";
+
+        Console.WriteLine("=====================================");
+        Console.WriteLine("       NUMBER GUESSING GAME       ");
+        Console.WriteLine("=====================================\n");
+    }
+
     public static int GenerateNumber(int min, int max)
     {
-        Random rnd = new Random();
         return rnd.Next(min, max + 1);
     }
 
     public static int SelectDifficulty()
     {
-        Console.WriteLine(@" MENU:
-        1. EASY LEVEL
-        2. MEDIUM LEVEL
-        3. HARD LEVEL
-        ");
+        Console.WriteLine("Select Difficulty:\n");
+        Console.WriteLine("[1] Easy   (0–10, 5 attempts)");
+        Console.WriteLine("[2] Medium (0–50, 7 attempts)");
+        Console.WriteLine("[3] Hard   (0–100, 10 attempts)\n");
 
         int choice = Utils.InputValidator.ReadInt("Choose a difficulty: ");
         return choice;
     }
     public static void RunGame()
     {
+        ShowHeader();
+
         int choice = SelectDifficulty();
 
         int min = 0;
@@ -42,7 +53,7 @@ public static class GameEngine
         } 
         else
         {
-            Console.WriteLine("Invalid choice. Defaulting to EASY.");
+            Console.WriteLine("\nInvalid choice. Defaulting to EASY.\n");
             max = 10;
             maxAttempts = 5;
         }
@@ -51,34 +62,39 @@ public static class GameEngine
         int attempts = 0;
         bool isCorrect = false;
     
-        Console.WriteLine($"\nGuess a number between {min} and {max}");
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine($"\nGuess a number between {min} and {max}\n");
 
         while (!isCorrect && attempts < maxAttempts)
         {
             Console.WriteLine($"Attempts left: {maxAttempts - attempts}");
 
-            int userGuess = Utils.InputValidator.ReadInt("Inform your guess: ");
+            int userGuess = Utils.InputValidator.ReadInt("> ");
             attempts++;
 
             if (userGuess == randomNum)
             {
-                Console.WriteLine($"Correct! You guessed the number in {attempts} attempts.");
+                Console.WriteLine($"\nCorrect! You guessed the number in {attempts} attempts.");
                 isCorrect = true;
             }
             else if (userGuess < randomNum)
             {
-                Console.WriteLine("Too low! Try again.");
+                Console.WriteLine("Too low! Try again.\n");
             } 
             else
             {
-                Console.WriteLine("Too high! Try again.");
+                Console.WriteLine("Too high! Try again.\n");
             }    
         }
 
         if (!isCorrect)
         {
-            Console.WriteLine($"You lost! The number was {randomNum}");
+            Console.WriteLine($"\nYou lost! The number was {randomNum}");
         }
+
+        Console.WriteLine("\n=====================================");
+        Console.WriteLine("       GAME OVER       ");
+        Console.WriteLine("=====================================");
     }
 
 //TODO: Clean the code, write a README and do some tests

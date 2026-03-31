@@ -16,7 +16,7 @@ namespace Utils
 
                 if (!isValid)
                 {
-                    Console.WriteLine("Invalid input. Please enter a number.");
+                    Console.WriteLine("Invalid input. Please enter a number.\n");
                 }
 
             } while (!isValid);
