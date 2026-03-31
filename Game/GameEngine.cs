@@ -3,17 +3,34 @@ public static class GameEngine
     public static int GenerateNumber()
     {
         Random rnd = new Random();
-
-        int randomNum = rnd.Next(0, 11);
-        return randomNum;
+        return rnd.Next(0, 11);
     }
 
-    public static int UserGuess()
+    public static void RunGame()
     {
-        Console.Write("Inform your guess: ");
-        int userGuess = Convert.ToInt32(Console.ReadLine());
+        int randomNum = GenerateNumber();
+        bool isCorrect = false;
 
-        return userGuess;
+        int userGuess = Utils.InputValidator.ReadInt("Inform your guess: ");
+
+        while (!isCorrect)
+        {
+            if (userGuess == randomNum)
+            {
+                Console.WriteLine("Correct! You guessed the number.");
+                isCorrect = true;
+            }
+            else if (userGuess < randomNum)
+            {
+                Console.WriteLine("Too low!");
+                break;
+            } 
+            else
+            {
+                Console.WriteLine("Too high!");
+                break;
+            }    
+        }
     }
 
 }

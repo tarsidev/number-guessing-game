@@ -1,15 +1,27 @@
-public class InputValidator
+namespace Utils
 {
-    public static int ReadInt(string message)
+    public class InputValidator
     {
-        int value;
-        Console.Write(message);
-
-        while (!int.TryParse(Console.ReadLine(), out value))
+        public static int ReadInt(string message)
         {
-            Console.Write("Input invalid. Try again: ");
-        }
+            int result;
+            bool isValid = false;
 
-        return value;
-    }
+            do
+            {
+                Console.Write(message);
+                string? input = Console.ReadLine();
+
+                isValid = int.TryParse(input, out result);
+
+                if (!isValid)
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                }
+
+            } while (!isValid);
+            
+            return result;
+        }
+    } 
 }
