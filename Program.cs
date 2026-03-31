@@ -2,6 +2,6 @@
 {
     public static void Main()
     {
-        GameEngine.RunGame();
+        GameEngine.Start();
     }
 }

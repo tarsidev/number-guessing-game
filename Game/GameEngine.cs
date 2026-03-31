@@ -1,6 +1,9 @@
+using Utils;
+
 public static class GameEngine
 {
     private static Random rnd = new Random();
+
     public static void ShowHeader()
     {
         Console.Clear();
@@ -26,9 +29,10 @@ public static class GameEngine
         int choice = Utils.InputValidator.ReadInt("Choose a difficulty: ");
         return choice;
     }
+
     public static void RunGame()
     {
-        ShowHeader();
+        //ShowHeader();
 
         int choice = SelectDifficulty();
 
@@ -69,7 +73,7 @@ public static class GameEngine
         {
             Console.WriteLine($"Attempts left: {maxAttempts - attempts}");
 
-            int userGuess = Utils.InputValidator.ReadInt("> ");
+            int userGuess = InputValidator.ReadInt("> ");
             attempts++;
 
             if (userGuess == randomNum)
@@ -89,7 +93,7 @@ public static class GameEngine
 
         if (!isCorrect)
         {
-            Console.WriteLine($"\nYou lost! The number was {randomNum}");
+            Console.WriteLine($"\nYou lost! The number was {randomNum}.");
         }
 
         Console.WriteLine("\n=====================================");
@@ -97,5 +101,36 @@ public static class GameEngine
         Console.WriteLine("=====================================");
     }
 
-//TODO: Clean the code, write a README and do some tests
+    public static void Start()
+    {
+        bool playAgain;
+
+        do
+        {
+            ShowHeader();
+            RunGame();
+            playAgain = AskPlayAgain();
+        } while (playAgain);
+    }
+
+    public static bool AskPlayAgain()
+    {
+        while(true)
+        {
+            Console.Write("\nDo you want to play again? (Y/N): ");
+            string input = Console.ReadLine()?.Trim().ToUpper();
+
+            if (input == "Y" || input == "YES")
+            {
+                return true;
+            } else if (input == "N" || input == "NO")
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please type Y or N.");
+            }
+        }
+    }
 }
