@@ -124,11 +124,11 @@ This project helped me practice:
 
 ## 💡 Future Improvements
 
-* Add difficulty validation (force valid selection)
-* Implement a best score system
-* Improve CLI visuals (colors, ASCII art)
-* Add unit tests
-* Refactor difficulty into a separate model/class
+- [ ] Add difficulty validation (force valid selection)
+- [ ] Implement a best score system
+- [ ] Improve CLI visuals (colors, ASCII art)
+- [ ] Add unit tests
+- [ ] Refactor difficulty into a separate model/class
 
 ---
 
